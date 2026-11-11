@@ -1,15 +1,16 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { num, useI18n, type Key } from "@/lib/i18n";
 
 function Digit({ value }: { value: string }) {
+  const reduced = useReducedMotion();
   return (
-    <div className="relative h-14 w-16 overflow-hidden rounded-xl bg-secondary text-secondary-foreground shadow-inner [perspective:300px]">
+    <div className="relative h-14 w-16 overflow-hidden rounded-sm bg-secondary text-secondary-foreground shadow-[var(--shadow-paper)] [perspective:300px]">
       <div className="absolute inset-x-0 top-1/2 h-px bg-background/30 z-10" />
       <AnimatePresence initial={false} mode="popLayout">
-        <motion.span key={value} className="absolute inset-0 grid place-items-center text-3xl font-bold tabular-nums"
-          initial={{ rotateX: -90, opacity: 0 }} animate={{ rotateX: 0, opacity: 1 }} exit={{ rotateX: 90, opacity: 0 }}
-          transition={{ duration: 0.45 }}>{value}</motion.span>
+        <motion.span key={value} className="absolute inset-0 grid place-items-center text-3xl font-display font-bold tabular-nums"
+          initial={{ rotateX: reduced ? 0 : -90, opacity: reduced ? 1 : 0 }} animate={{ rotateX: 0, opacity: 1 }} exit={{ rotateX: reduced ? 0 : 90, opacity: 0 }}
+          transition={{ duration: reduced ? 0 : 0.45 }}>{value}</motion.span>
       </AnimatePresence>
     </div>
   );

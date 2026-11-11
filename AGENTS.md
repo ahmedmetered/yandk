@@ -30,3 +30,4 @@ use the editor.
 <!-- LOVABLE:END -->
 
 - All wedding content lives in src/config/wedding.ts with ar/en values per field; UI strings in src/lib/i18n.ts — keeps details editable in one place.
+- Shared paper layers, star pattern, and derived monograms live in wedding/Ornaments.tsx; visual tokens live in styles.css so the invitation stays cohesive without duplicating content.
