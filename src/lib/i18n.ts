@@ -44,7 +44,7 @@ export type Key = keyof typeof strings;
 const easternDigits = "٠١٢٣٤٥٦٧٨٩";
 export function num(n: number | string, lang: Lang) {
   const s = String(n);
-  return lang === "ar" ? s.replace(/\d/g, (d) => easternDigits[+d]) : s;
+  return lang === "ar" ? s.replace(/\d/g, (d) => easternDigits.charAt(+d)) : s;
 }
 
 export function fmtDate(iso: string, lang: Lang, withWeekday = true) {
