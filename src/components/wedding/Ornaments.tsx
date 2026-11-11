@@ -37,14 +37,16 @@ export function Frame({ children, className = "" }: { children: React.ReactNode;
 }
 
 export function Divider() {
+  const reduced = useReducedMotion();
   return <svg viewBox="0 0 300 2" className="foil-divider mx-auto my-12 h-1 w-56" aria-hidden="true">
     <defs><linearGradient id="foil-line"><stop stopColor="var(--gold-deep)" /><stop offset=".5" stopColor="var(--gold-highlight)" /><stop offset="1" stopColor="var(--gold-deep)" /></linearGradient></defs>
-    <motion.path d="M0 1H300" stroke="url(#foil-line)" strokeWidth="1" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1.8 }} />
+    <motion.path d="M0 1H300" stroke="url(#foil-line)" strokeWidth="1" initial={{ pathLength: reduced ? 1 : 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: reduced ? 0 : 1.8 }} />
   </svg>;
 }
 
 export function FadeUp({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  return <motion.section className={`paper-section ${className}`} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .7, delay }}>
+  const reduced = useReducedMotion();
+  return <motion.section className={`paper-section ${className}`} initial={reduced ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: reduced ? 0 : .7, delay: reduced ? 0 : delay }}>
     <PaperLayers /><div className="paper-section-content">{children}</div>
   </motion.section>;
 }
