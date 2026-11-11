@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- All wedding content lives in src/config/wedding.ts with ar/en values per field; UI strings in src/lib/i18n.ts — keeps details editable in one place.
